@@ -15,6 +15,9 @@
 
     </style>
   </head>
+
+
+
   <body>
   <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
@@ -41,7 +44,7 @@
       <ul class="layui-nav layui-layout-right">
         <li class="layui-nav-item layui-hide layui-show-md-inline-block">
           <a href="javascript:;">
-            <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+            <img src="${pageContext.request.contextPath}/img/${xs.zp}" class="layui-nav-img" onerror="javascript:this.src='${pageContext.request.contextPath}/img/tx32.png'">
             欢迎！${xs.xm}
           </a>
           <dl class="layui-nav-child">
@@ -92,13 +95,21 @@
                      data-type="tabAdd"
               > <i class="layui-icon layui-icon-read" style="font-size: 18px;font-weight:bold;color: #fff"></i>&nbsp;&nbsp;查询所有课程</a></dd>
               <dd><a href="javascript:;"
+                     data-url="upload.jsp"
+                     data-id="upload"
+                     data-title="<i class='layui-icon layui-icon-read'
+                style='font-size: 20px; color: #1E9FFF; font-weight: bold'></i>&nbsp;&nbsp;修改头像"
+                     class="site-demo-active"
+                     data-type="tabAdd"
+              > <i class="layui-icon layui-icon-camera" style="font-size: 18px;font-weight:bold;color: #fff"></i>&nbsp;&nbsp;修改头像</a></dd>
+              <%--<dd><a href="javascript:;"
                      data-url="changePassword.jsp"
                      data-id="changePassword"
                      data-title="<i class='layui-icon layui-icon-auz'
                 style='font-size: 20px; color: #1E9FFF; font-weight: bold'></i>&nbsp;&nbsp;修改个人密码"
                      class="site-demo-active"
                      data-type="tabAdd"
-              > <i class="layui-icon layui-icon-auz" style="font-size: 18px;font-weight:bold;color: #fff"></i>&nbsp;&nbsp;修改个人密码</a></dd>
+              > <i class="layui-icon layui-icon-auz" style="font-size: 18px;font-weight:bold;color: #fff"></i>&nbsp;&nbsp;修改个人密码</a></dd>--%>
             </dl>
           </li>
           <li class="layui-nav-item" style="display: ${xs.bz=="admin"?"block":"none"}">
@@ -160,6 +171,8 @@
       @WYU
     </div>
   </div>
+
+
 
   <script>
     //JS

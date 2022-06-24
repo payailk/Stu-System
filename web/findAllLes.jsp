@@ -86,7 +86,21 @@
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+                layer.confirm('确定选修《'+data.kcm+'》吗', function(index){
+                    // 要去数据库选修
+                    // 此处要处理ajax技术
+                    var json = {"id":data.id};
+                    $.post("PerSelLessonServlet",json,function (data,code) {
+                        if(data=="1"){
+                            layer.msg('删除成功', {icon: 1});
+                        }else{
+                            layer.msg('删除失败', {icon: 5});
+                        }
+                    })
+
+                    obj.del();
+                    layer.close(index);
+                });
             }
         });
 

@@ -1,4 +1,7 @@
-<%-- Created by IntelliJ IDEA. User: Robin Date: 2021-11-08 Time: 10:18 To change this template use File | Settings | File Templates. --%>
+<%@ page import="com.wyu.service.XSBService" %>
+<%@ page import="com.wyu.service.XSBServiceImpl" %>
+<%@ page import="com.wyu.pojo.Xsb" %>
+<%@ page import="com.wyu.util.MD5Util" %><%-- Created by IntelliJ IDEA. User: Robin Date: 2021-11-08 Time: 10:18 To change this template use File | Settings | File Templates. --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head><title>登录界面</title>
@@ -54,6 +57,41 @@
         border-radius: 0px;
     }</style>
 </head>
+
+<%
+    //获取cookie
+    Cookie[] cookies = request.getCookies();
+    //取出cookie中的值
+    String userNumber = "";
+    String password = "";
+    if (cookies != null && cookies.length > 0) {
+        for (Cookie cookie: cookies) {
+            String cookieName = cookie.getName();
+            if ("xh".equalsIgnoreCase(cookieName)) {
+                userNumber = cookie.getValue();
+            }
+            if ("mm".equalsIgnoreCase(cookieName)) {
+                password = cookie.getValue();
+            }
+//    if (userNumber.equalsIgnoreCase(cookieName)){
+//    request.getRequestDispatcher(index.jsp).forward(request, response);
+//    }
+        }
+    }
+    // 将用户名和密码提交给service完成业务逻辑处理
+    XSBService XSBService = new XSBServiceImpl();
+    // 调用登录的方法
+    Xsb xs = XSBService.login(userNumber, MD5Util.code(password));
+    if(xs!=null){
+        // 保存学生到session中跳转到首页
+        session.setAttribute("xs",xs);
+        response.sendRedirect("index.jsp");
+        // 置空登录信息
+        session.setAttribute("loginMsg","");
+        return;
+    }
+%>
+
 <body>
 <div id="div1" class="layui-bg-green">
     <div id="div1_div1">后台管理-登录</div>
@@ -61,11 +99,11 @@
         <table style="margin: 0 auto;">
             <tr>
                 <td>账号</td>
-                <td><input type="text" name="xh" class="input1"></td>
+                <td><input type="text" name="xh" id="xh" class="input1"></td>
             </tr>
             <tr>
                 <td>密码</td>
-                <td><input type="password" name="mm" class="input1"></td>
+                <td><input type="password" name="mm" id="mm" class="input1"></td>
             </tr>
             <%--<tr> <td>性别</td> <td> <input type="radio" name="sex" value="男"> 男<input type="radio" name="sex" value="女">女 </td> </tr> <tr> <td>爱好</td> <td> <input type="checkbox" name="like" value="lq">篮球 <input type="checkbox" name="like" value="pq">排球 <input type="checkbox" name="like" value="ppq">乒乓球 <input type="checkbox" name="like" value="ymq">羽毛球 </td> </tr> <tr> <td>城市</td> <td> <select name="city"> <option value="bj">北京</option> <option value="sh">上海</option> <option value="gz">广州</option> <option value="sz">深圳</option> </select> </td> </tr>--%>
             <tr>
@@ -92,6 +130,13 @@
     </form>
 </div>
 </body>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script> /* 刷新验证码的函数*/
+$("#xh").val(<%=userNumber%>);
+$("#mm").val(<%=password%>);
+</script>
+
 <script> /* 刷新验证码的函数*/
 function refresh() {
     var checkcodeImg = document.getElementById("checkcodeImg");/* 修改img的src属性*/

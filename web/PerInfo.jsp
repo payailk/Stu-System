@@ -57,7 +57,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">照片</label>
             <div class="layui-input-inline">
-                <img src="${pageContext.request.contextPath}/img/${xs.zp}" style="width: 120px;height: 150px;">
+                <img src="${pageContext.request.contextPath}/img/${xs.zp}" style="width: 150px;height: 150px;" onerror="javascript:this.src='${pageContext.request.contextPath}/img/tx32.png'">
             </div>
         </div>
     </form>

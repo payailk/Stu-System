@@ -12,7 +12,7 @@
     <button class="layui-btn" data-type="isAll">验证是否全选</button>
 </div>
 
-<table class="layui-table" lay-data="{width: 1030, height:500, url:'${pageContext.request.contextPath}/PerSelLesServlet', page:true, id:'idTest'}" lay-filter="demo">
+<table class="layui-table" lay-data="{width: 1030, height:500, url:'PerSelLesServlet', page:true, id:'idTest'}" lay-filter="demo">
     <thead>
     <tr>
         <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
@@ -80,7 +80,10 @@
                     layer.close(index);
                 });
             } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+                layer.confirm('确定选修该课程？', function (index) {
+                    obj.del();
+                    layer.close(index);
+                })
             }
         });
 

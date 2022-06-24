@@ -97,14 +97,14 @@
                     </select>
                 </td>
             </tr>
-            <tr>
-                <td>总学分</td>
-                <td><input type="text" name="zxf" class="input1"></td>
-            </tr>
-            <tr>
+<%--            <tr>--%>
+<%--                <td>总学分</td>--%>
+<%--                <td><input type="text" name="zxf" class="input1"></td>--%>
+<%--            </tr>--%>
+<%--            <tr>
                 <td>照片</td>
                 <td><input type="text" name="zp" class="input1"></td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td>验证码</td>
                 <td style="position: relative;"><input type="text" name="checkcode" class="input1"
@@ -142,8 +142,8 @@ $(function () {
             xb: "required",
             cssj: "required",
             zy_id: "required",
-            zxf: {required: true, rangelength:[0,3]},
-            zp: "required",
+            // zxf: {required: true, rangelength:[0,3]},
+            // zp: "required",
             checkcode: {required: true, rangelength: [4, 4],},
         },
         messages: {
@@ -159,10 +159,10 @@ $(function () {
                 required: "&nbsp;&nbsp;<span style='color: #ff0000; font-size: 11px;'>密码不能为空</span>",
                 rangelength: "&nbsp;&nbsp;<span style='color: #ff0000; font-size: 11px;'>密码需为1-8位之间</span>"
             },
-            zxf: {
+/*            zxf: {
                 required: "&nbsp;&nbsp;<span style='color: #ff0000; font-size: 11px;'>学分不能为空</span>",
                 rangelength: "&nbsp;&nbsp;<span style='color: #ff0000; font-size: 11px;'>需为0-3位之间</span>",
-            },
+            },*/
             checkcode: {
                 required: "&nbsp;&nbsp;<span style='color: #ff0000; font-size: 11px;position: absolute;top: 40px;'>验证码不能为空</span>",
                 rangelength: "&nbsp;&nbsp;<span style='color: red; font-size: 11px;position: absolute;top: 40px;'>验证码只能是4位</span>",
